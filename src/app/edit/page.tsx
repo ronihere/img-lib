@@ -2,7 +2,6 @@
 import { Button } from '@/components/ui/button';
 import { CldImage } from 'next-cloudinary';
 import React, { useReducer, useState } from 'react'
-import Modal from '../components/Modal';
 import SingleInputModal from './components/AiFillModal';
 
 const initialState = {
@@ -12,7 +11,7 @@ const initialState = {
     "Oil Paint": false,
     "Ai Fill": false
 }
-const convertAllKeysToFalseExceptParam = (originalObj: typeof initialState, exceptionKey: string, changeBooleanVal = false) => {
+const convertAllKeysToFalseExceptParam = (originalObj: any, exceptionKey: string, changeBooleanVal = false) => {
     // const newObj = { ...originalObj };
     const keys = Object.keys(originalObj);
     keys.forEach((key) => {
