@@ -21,7 +21,7 @@ const convertAllKeysToFalseExceptParam = (originalObj: any, exceptionKey: string
 }
 
 
-const reducer = (state, action) => {
+const reducer = (state : any, action : any) => {
     switch (action.type) {
         case 'Ai Fill':
             convertAllKeysToFalseExceptParam(state, action.type, false)
