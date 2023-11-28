@@ -15,8 +15,6 @@ const GalleryView = async ({ searchParams: {search} }: {
     searchParams: {
     search: string
 }}) => {
-    console.log('search:::', search);
-
     const results = await cloudinary.v2.search
         .expression(`resource_type:image ${search ? `AND tags=${search}` : ``}`)
         .with_field('tags')
@@ -31,24 +29,12 @@ const GalleryView = async ({ searchParams: {search} }: {
                 </p>
                 <UploadButton />
             </div>
-            {/* <div className='grid grid-cols-4 gap-4 my-8'>
-                {
-                    [getColumns(0), getColumns(1), getColumns(2), getColumns(3)].map((col, index) =>
-                        <div key={index} className="flex flex-col gap-4">
-                            {
-                                col.map((result: TResult) =>
-                                    <CloudImageComponent key={result.public_id} src={result.public_id} tags={result.tags} alt={result.url} path="/gallery" />
-                                )
-                            }
-                        </div>
-                    )
-                }
-            </div> */}
-            <SearchGallery />
+            <div className='mt-8'>
+            <SearchGallery initialSearch={search } />
             <ImageGrid listOfList={results.resources} component={(comp) =>
                 <CloudImageComponent key={comp.public_id} src={comp.public_id} tags={comp.tags} alt={comp.url} path="/gallery" />
-
             } />
+            </div>
         </section>
     )
 }

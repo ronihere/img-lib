@@ -1,13 +1,16 @@
 'use client'
 import { Button } from '@/components/ui/button';
 import { CldImage } from 'next-cloudinary';
-import React, { useReducer } from 'react'
+import React, { useReducer, useState } from 'react'
+import Modal from '../components/Modal';
+import SingleInputModal from './components/AiFillModal';
 
 const initialState = {
     "Blur": false,
     "Fill Background": false,
     "Blur Faces": false,
-    "Oil Paint": false
+    "Oil Paint": false,
+    "Ai Fill": false
 }
 const convertAllKeysToFalseExceptParam = (originalObj: typeof initialState, exceptionKey: string, changeBooleanVal = false) => {
     // const newObj = { ...originalObj };
@@ -21,6 +24,12 @@ const convertAllKeysToFalseExceptParam = (originalObj: typeof initialState, exce
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case 'Ai Fill':
+            convertAllKeysToFalseExceptParam(state, action.type, false)
+            return {
+                ...state,
+                [action.type]: true,
+            }
         case 'Blur':
             convertAllKeysToFalseExceptParam(state, action.type, false)
             return {
@@ -39,11 +48,23 @@ const reducer = (state, action) => {
                 ...state,
                 [action.type]: true,
             }
+        case 'Oil Paint':
+            convertAllKeysToFalseExceptParam(state, action.type, false)
+            return {
+                ...state,
+                [action.type]: true,
+            }
+        default:
+            throw Error('Invalid type for dispatch')
     }
 }
 export default function EditImagePage({ params, searchParams }: { params: string, searchParams: { publicId: string } }) {
     // console.log(searchParams);
     const [state, dispatch] = useReducer(reducer, initialState);
+    const [aimgPrompt, setAimgPrompt] = useState('');
+    const FillWithAiHandler = () => {
+         dispatch({ type: 'Ai Fill'})
+    }
     return (
         <section className='my-8'>
             <div className='flex justify-between'>
@@ -54,11 +75,14 @@ export default function EditImagePage({ params, searchParams }: { params: string
             <div className='flex gap-4 mt-8'>
                 {
                     Object.keys(initialState).map((edit) => {
-                        return <Button variant="default" onClick={() => dispatch({ type: edit })}>
+                        if (edit === 'Ai Fill') return null;
+                        return <Button variant="default" key={edit} onClick={() => dispatch({ type: edit })}>
                             {edit}
                         </Button>
                     })
                 }
+                {/* <Button variant={"destructive"} onClick={openPrompt}>AI Fill</Button> */}
+                <SingleInputModal inputState={aimgPrompt} setInputState={setAimgPrompt} clickHandler={FillWithAiHandler} title='Edit as you like!' description='name the item you want to add in this image!' inputTitle='Item Name:' />
                 {/* <Button variant="default" onClick={()=> dispatch({type:"Fill Background"})}>
                   Fill Background
               </Button> */}
@@ -68,9 +92,16 @@ export default function EditImagePage({ params, searchParams }: { params: string
                 <CldImage width={400} height={400} src={searchParams.publicId} alt='some img'
                 />
 
-                {state['Fill Background'] ?
+                {
+                    state['Fill Background'] ?
+                        <CldImage width={400} height={400} src={searchParams.publicId} alt='some img'
+                            fillBackground
+                    />
+                        : state['Ai Fill'] ?
                     <CldImage width={400} height={400} src={searchParams.publicId} alt='some img'
-                        fillBackground={true}
+                            fillBackground={{
+                            prompt: aimgPrompt
+                        }}
                     />
                     : state['Blur'] ?
                         <CldImage width={400} height={400} src={searchParams.publicId} alt='some img'

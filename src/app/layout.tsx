@@ -22,7 +22,7 @@ export default function RootLayout({
           <TopNav/>
         <div className='flex'>
           <SideNav />
-          <div className='w-full'>
+          <div className='w-full p-6'>
 
         {children}
           </div>

@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react"
+import { MouseEvent, useState } from "react"
 import { usePathname } from 'next/navigation';
 import { Button } from "@/components/ui/button"
 import {
@@ -13,29 +13,34 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CreateFolder } from "../gallery/actions/createFolder"
+// import { CreateFolder } from "../gallery/actions/createFolder"
 
 
-export default function Modal({ publicId }: { publicId: string }) {
-  const pathname = usePathname();
-  console.log('pathname', pathname)
+export default function SingleInputModal({inputState, setInputState, clickHandler, description, title, inputTitle }: {
+    clickHandler: (input : string) => void;
+    description: string;
+    title: string;
+    inputTitle: string;
+    inputState: string;
+    setInputState: React.Dispatch<React.SetStateAction<string>>
+}) {
+    // const [inputState, setInputState] = useState('');
     const [open, setOpen] = useState(false);
-    const [albumName, setAlbumName] = useState("");
-    const submitHandler = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        await CreateFolder(publicId , albumName,pathname);
+    const submitHandler = async () => {
+        clickHandler(inputState)
         setOpen(false);
     }
   return (
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">Add to Album?</Button>
+        <Button variant="outline">{title}</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Album Name</DialogTitle>
+          <DialogTitle>{inputTitle}</DialogTitle>
           <DialogDescription>
-            Type an album you want to move this image into.
+            {description}
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -43,12 +48,12 @@ export default function Modal({ publicId }: { publicId: string }) {
             <Label htmlFor="name" className="text-right">
               Album
             </Label>
-            <Input id="name" value={albumName} onChange={(e)=>setAlbumName(e.target.value)} className="col-span-3" />
+            <Input id="name" value={inputState} onChange={(e)=>setInputState(e.target.value)} className="col-span-3" />
           </div>
          
         </div>
         <DialogFooter>
-          <Button type="submit" onClick={(e)=>submitHandler(e)}>Save changes</Button>
+          <Button type="submit" onClick={()=>submitHandler()}>Make Changes</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

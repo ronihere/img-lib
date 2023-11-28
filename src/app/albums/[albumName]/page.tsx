@@ -18,6 +18,7 @@ export default async function SingleAlbumView({
         .execute()
 
 
+
     return (
         <div className='my-8'>
             <ForceRefresh/>
