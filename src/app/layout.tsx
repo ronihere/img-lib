@@ -23,7 +23,6 @@ export default function RootLayout({
         <div className='flex'>
           <SideNav />
           <div className='w-full p-6'>
-
         {children}
           </div>
         </div>

@@ -12,7 +12,6 @@ type TResult = {
 
 const AlbumPage = async () => {
     const folders = await cloudinary.v2.api.root_folders()
-    console.log('Folders:::', folders);
     return (
         <section className='my-8'>
             <div className='flex justify-between'>

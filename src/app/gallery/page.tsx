@@ -14,7 +14,8 @@ type TResult = {
 const GalleryView = async ({ searchParams: {search} }: {
     searchParams: {
     search: string
-}}) => {
+    }
+}) => {
     const results = await cloudinary.v2.search
         .expression(`resource_type:image ${search ? `AND tags=${search}` : ``}`)
         .with_field('tags')

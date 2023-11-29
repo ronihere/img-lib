@@ -17,7 +17,6 @@ const convertAllKeysToFalseExceptParam = (originalObj: any, exceptionKey: string
     keys.forEach((key) => {
         if (key !== exceptionKey) originalObj[key] = changeBooleanVal
     })
-    console.log('ORIGINALOBJ:::', originalObj);
 }
 
 

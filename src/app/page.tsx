@@ -1,8 +1,8 @@
-import Image from 'next/image' 
-export default function Home() {
+import GalleryView from './gallery/page'
+export default function Home({ params }: { params: any }) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-   
+    <main className="">
+      <GalleryView searchParams={{ search: '' }}/>
     </main>
   )
 }
