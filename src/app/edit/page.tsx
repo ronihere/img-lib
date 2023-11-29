@@ -104,7 +104,7 @@ export default function EditImagePage({ params, searchParams }: { params: string
                     />
                     : state['Blur'] ?
                         <CldImage width={400} height={400} src={searchParams.publicId} alt='some img'
-                            blur={true}
+                            blur="1200"
                         />
                         : state['Blur Faces'] ?
                             <CldImage width={400} height={400} src={searchParams.publicId} alt='some img'
