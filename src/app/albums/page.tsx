@@ -19,7 +19,7 @@ const AlbumPage = async () => {
                     Albums
                 </p>
             </div>
-            <div className='mt-8 flex'>
+            <div className='mt-8 flex flex-wrap gap-4'>
                 {
                     folders.folders.map((folder: { name: string; path: string }, index: number) => {
                         return <AlbumCard key={folder.name} {...folder} />
