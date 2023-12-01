@@ -3,6 +3,7 @@ import UploadButton from "./components/UploadButton"
 import CloudImageComponent from '../components/CloudImageComponent';
 import ImageGrid from '@/components/ui/imageGrid';
 import SearchGallery from './components/SearchGallery';
+import { setFavAction } from './actions/setFavAction';
 
 type TResult = {
     public_id: string;
@@ -33,7 +34,7 @@ const GalleryView = async ({ searchParams: {search} }: {
             <div className='mt-8'>
             <SearchGallery initialSearch={search } />
             <ImageGrid listOfList={results.resources} component={(comp) =>
-                <CloudImageComponent key={comp.public_id} src={comp.public_id} tags={comp.tags} alt={comp.url} path="/gallery" />
+                <CloudImageComponent key={comp.public_id} src={comp.public_id} tags={comp.tags} alt={comp.url} path="/gallery"/>
             } />
             </div>
         </section>

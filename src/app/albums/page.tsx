@@ -1,7 +1,4 @@
 import cloudinary from 'cloudinary'
-import ImageGrid from '@/components/ui/imageGrid';
-import { CldImage } from 'next-cloudinary';
-import CloudImageComponent from '../components/CloudImageComponent';
 import { AlbumCard } from './components/albumCard';
 type TResult = {
     public_id: string;

@@ -16,8 +16,8 @@ import { Label } from "@/components/ui/label"
 // import { CreateFolder } from "../gallery/actions/createFolder"
 
 
-export default function SingleInputModal({inputState, setInputState, clickHandler, description, title, inputTitle }: {
-    clickHandler: (input : string) => void;
+export default function SingleInputModal({inputState, setInputState, clickhandler, description, title, inputTitle }: {
+    clickhandler: (input : string) => void;
     description: string;
     title: string;
     inputTitle: string;
@@ -27,7 +27,7 @@ export default function SingleInputModal({inputState, setInputState, clickHandle
     // const [inputState, setInputState] = useState('');
     const [open, setOpen] = useState(false);
     const submitHandler = async () => {
-        clickHandler(inputState)
+        clickhandler(inputState)
         setOpen(false);
     }
   return (

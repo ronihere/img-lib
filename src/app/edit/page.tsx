@@ -80,7 +80,7 @@ export default function EditImagePage({ params, searchParams }: { params: string
                     })
                 }
                 {/* <Button variant={"destructive"} onClick={openPrompt}>AI Fill</Button> */}
-                <SingleInputModal inputState={aimgPrompt} setInputState={setAimgPrompt} clickHandler={FillWithAiHandler} title='Edit as you like!' description='name the item you want to add in this image!' inputTitle='Item Name:' />
+                <SingleInputModal inputState={aimgPrompt} setInputState={setAimgPrompt} clickhandler={FillWithAiHandler} title='Edit as you like!' description='name the item you want to add in this image!' inputTitle='Item Name:' />
                 {/* <Button variant="default" onClick={()=> dispatch({type:"Fill Background"})}>
                   Fill Background
               </Button> */}

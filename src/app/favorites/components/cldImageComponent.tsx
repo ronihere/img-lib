@@ -3,16 +3,20 @@ import React, { useState } from 'react'
 import { CldImage } from 'next-cloudinary';
 import EmptyHeart from '@/components/icons/EmptyHeart';
 import FullHeart from '@/components/icons/FullHeart';
-import { setFavAction } from '../gallery/actions/setFavAction';
+import { setFavAction } from '@/app/gallery/actions/setFavAction';
 import DropDownMenu from '@/app/components/DropDownMenu';
  
 const CloudImageComponent = (props: any) => {
     const [tags, setTags] = useState(props.tags)
     const undoFav = async (publicId: string) => { 
+        if (props.unfavhandler) {
+            props.unfavhandler(publicId);
+        }
         const newTags = tags.filter((tag: string) => tag !== 'favorite');
         setTags(newTags);
         if (!await setFavAction(publicId, true, props.path)) {
             setTags((prev: string[]) => [...prev, 'favorite'])
+            props.setUnFavApiSuccess(false);
         }
     }
     const doFav = (publicId: string) => {
@@ -38,7 +42,6 @@ const CloudImageComponent = (props: any) => {
             }
             
             <DropDownMenu publicId={ props.src} /> 
-            {/* <Modal/> */}
         </div>
     )
 }

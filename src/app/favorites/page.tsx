@@ -1,9 +1,10 @@
 import React from 'react'
 import cloudinary from "cloudinary"
-import CloudImageComponent from '../components/CloudImageComponent'
-import ImageGrid from '@/components/ui/imageGrid'
-const FavoritePage = async() => {
-    const results = await cloudinary.v2.api.resources_by_tag("favorite")
+import { ForceRefresh } from '../components/ForceRefresh'
+import OptimisticFavorites from './components/OptimisticFavorites'
+const FavoritePage = async () => {
+  const response = await getData();
+  const results = response.props.results;
   return (
     <section className='py-8'>
             <div className='flex justify-between'>
@@ -11,17 +12,22 @@ const FavoritePage = async() => {
                 Favorites
             </p>
             </div>
-            {/* <div className='flex gap-14 flex-wrap mt-10'>
-            {
-                results.resources.map((result) => {
-                    return <CloudImageComponent key={result.public_id} src={result.public_id} tags={['favorite']} alt={result.url} path={"/favorites"} />
-                })
-            }
-            </div> */}
-          <ImageGrid listOfList={results.resources} component={(comp) =>
-        <CloudImageComponent key={comp.public_id} src={comp.public_id} tags={['favorite']} alt={comp.url} path={"/favorites"} />} />
+      <OptimisticFavorites results={results} />
         </section>
   )
+}
+
+export async function getData() {
+  const results = await cloudinary.v2.api.resources_by_tag("favorite")
+  console.log('getdata')
+  return {
+    props: {
+      results,
+    },
+    // This request should be refetched on every request.
+    // Similar to getServerSideProps.
+    cache: 'no-store',
+  }
 }
 
 export default FavoritePage

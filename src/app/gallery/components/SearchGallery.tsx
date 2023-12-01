@@ -21,7 +21,6 @@ export default function SearchGallery({initialSearch}: {initialSearch: string}) 
               Search By Tags
           </Label>
           <div className="flex gap-4">
-              
               <Input id="name" value={tagName} onChange={(e) => setTagName(e.target.value)} className="col-span-3" />
               <Button type="submit" className="text-md">Search</Button>
           </div>
