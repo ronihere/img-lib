@@ -2,9 +2,13 @@ import React from 'react'
 import cloudinary from "cloudinary"
 import { ForceRefresh } from '../components/ForceRefresh'
 import OptimisticFavorites from './components/OptimisticFavorites'
-const FavoritePage = async () => {
+const FavoritePage = async ({ searchParams: {search} }: {
+    searchParams: {
+    search: string
+    }
+}) => {
   const response = await getData();
-  const results = response.props.results;
+  const results = !search && response.props.results;
   return (
     <section className='py-8'>
             <div className='flex justify-between'>
