@@ -9,13 +9,13 @@ import React from 'react'
 const SideNav = () => {
     const pathname = usePathname();
     return (
-        <div className="pb-12 w-1/4">
+        <div className="pb-2 w-full md:w-1/4 md:pb-12">
             <div className="space-y-4 py-4">
                 <div className="px-3 py-2">
                     <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
                         
                     </h2>
-                    <div className="space-y-1">
+                    <div className="space-y-1 flex items-center justify-center md:block">
                         <Button asChild variant="ghost" className="w-full justify-start flex gap-2 items-center" style={{background:pathname.split(' ').includes('/') || pathname.split(' ').includes('/gallery') ? "#4D4D50" : ""}}>
                             <Link href='/gallery'>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">

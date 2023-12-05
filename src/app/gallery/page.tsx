@@ -24,14 +24,14 @@ const GalleryView = async ({ searchParams: {search} }: {
         .max_results(30)
         .execute() as { resources: TResult[] }
     return (
-        <section className='my-8'>
-            <div className='flex justify-between'>
-                <p className="text-4xl text-slate-400 font-bold">
+        <section className='my-2 md:my-8'>
+            <div className='flex justify-center md:justify-between'>
+                <p className="text-4xl hidden md:block text-slate-400 font-bold">
                     Gallery
                 </p>
                 <UploadButton />
             </div>
-            <div className='mt-8'>
+            <div className='mt-2 md:mt-8'>
             <SearchGallery initialSearch={search } />
             <ImageGrid listOfList={results.resources} component={(comp) =>
                 <CloudImageComponent key={comp.public_id} src={comp.public_id} tags={comp.tags} alt={comp.url} path="/gallery"/>

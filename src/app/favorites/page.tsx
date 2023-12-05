@@ -1,6 +1,5 @@
 import React from 'react'
 import cloudinary from "cloudinary"
-import { ForceRefresh } from '../components/ForceRefresh'
 import OptimisticFavorites from './components/OptimisticFavorites'
 const FavoritePage = async ({ searchParams: {search} }: {
     searchParams: {
