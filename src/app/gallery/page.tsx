@@ -3,7 +3,6 @@ import UploadButton from "./components/UploadButton"
 import CloudImageComponent from '../components/CloudImageComponent';
 import ImageGrid from '@/components/ui/imageGrid';
 import SearchGallery from './components/SearchGallery';
-import { setFavAction } from './actions/setFavAction';
 
 type TResult = {
     public_id: string;
@@ -40,5 +39,4 @@ const GalleryView = async ({ searchParams: {search} }: {
         </section>
     )
 }
-export const revalidate = 60 // revalidate at most every hour
 export default GalleryView

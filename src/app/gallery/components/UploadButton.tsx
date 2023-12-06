@@ -3,14 +3,15 @@ import { Button } from '@/components/ui/button'
 import { CldUploadButton } from 'next-cloudinary'
 import { useRouter } from 'next/navigation'
 import React from 'react'
+import { revalidate } from '../actions/revalidateGallery'
 
 const UploadButton = () => {
     const router = useRouter();
     const successHandler = async (result, { widget }) => {
         // console.log('In Handler:::', result);
         widget.close();
-        await new Promise(res => setTimeout(res, 10000));
-        router.refresh();
+        await new Promise(res => setTimeout(res, 2000));
+        revalidate('/gallery');
     }
     return (
         <Button asChild>
