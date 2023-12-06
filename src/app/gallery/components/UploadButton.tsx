@@ -3,12 +3,6 @@ import { Button } from '@/components/ui/button'
 import { CldUploadButton } from 'next-cloudinary'
 import { useRouter } from 'next/navigation'
 import React from 'react'
-type TUploadEvent = {
-    event: string,
-    info: {
-        public_id: string
-    }
-}
 
 const UploadButton = () => {
     const router = useRouter();
