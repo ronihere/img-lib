@@ -40,5 +40,5 @@ const GalleryView = async ({ searchParams: {search} }: {
         </section>
     )
 }
-
+export const revalidate = 60 // revalidate at most every hour
 export default GalleryView

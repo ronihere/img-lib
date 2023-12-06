@@ -108,7 +108,7 @@ export default function EditImagePage({ params, searchParams }: { params: string
 
                 <CldImage width={400} height={400} src={searchParams.publicId} alt='some img'
                 />
-                <div className='border border-white px-4 py-1'>Edited Image</div>
+                <div className='border border-white px-4 py-1 md:hidden'>Edited Image</div>
                 {
                     state['Fill Background'] ?
                         <CldImage width={400} height={400} src={searchParams.publicId} alt='some img'
