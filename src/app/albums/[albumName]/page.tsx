@@ -10,9 +10,8 @@ export default async function SingleAlbumView({
         albumName: string
     }
 }) {
-    // console.log(':::params', albumName)
     const assetsList = await cloudinary.v2.search
-        .expression(`resource_type:image AND folder=${albumName}`)
+        .expression('resource_type:image AND folder='+`"${decodeURIComponent(albumName)}"`)
         .sort_by('public_id', 'desc')
         .max_results(30)
         .execute()
@@ -23,7 +22,7 @@ export default async function SingleAlbumView({
         <div className='my-8'>
             <ForceRefresh/>
             <ImageGrid listOfList={assetsList.resources} component={(comp) =>
-                <CloudImageComponent key={comp.public_id} src={comp.public_id} tags={['favorite']} alt={comp.url} path={`/albums/${albumName}`} />} />
+                <CloudImageComponent key={comp.public_id} src={comp.public_id} tags={[]} alt={comp.url} path={`/albums/${albumName}`} />} />
         </div>
     )
 }

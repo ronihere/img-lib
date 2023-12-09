@@ -12,12 +12,12 @@ import {
 import Link from "next/link"
 
 
-export function AlbumCard({name, path}: {name: string , path : string}) {
+export function AlbumCard({ name, path }: { name: string, path: string }) {
   return (
     <Card className="w-[350px]">
       <CardHeader>
-        <CardTitle>Album <span className="font-bold text-lg">{name}</span></CardTitle>
-        <CardDescription>View all assests in the <span className="font-bold text-lg">{name}</span> folder in one-click.</CardDescription>
+        <CardTitle>Album <span className="font-bold text-lg text-slate-600">{name}</span></CardTitle>
+        <CardDescription>View all assests in the <span className="font-bold text-lg text-slate-600">{name}</span> folder in one-click.</CardDescription>
       </CardHeader>
       <CardContent>
         {/* {name} */}
