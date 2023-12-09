@@ -9,7 +9,7 @@ import React from 'react'
 const SideNav = () => {
     const pathname = usePathname();
     return (
-        <div className="pb-2 w-full md:w-1/4 md:pb-12 sticky h-full overflow-auto top-10">
+        <div className="pb-2 w-full md:w-1/4 md:pb-12 sticky h-full overflow-auto top-10 bg-black z-10">
             <div className="space-y-4 py-4">
                 <div className="px-3 py-2">
                     <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
